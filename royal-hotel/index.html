@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Stazle</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="assets/stazle.jpeg" alt="logo" /></a>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#service">Services</a></li>
+        <li><a href="#explore">Explore</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li id="cart-icon-nav">
+          <a href="#" id="cart-icon-btn">
+            <i class="ri-shopping-cart-line"></i>
+            <span class="cart-count" id="cart-count">0</span>
+          </a>
+          <div class="cart-dropdown" id="cart-dropdown">
+            <h4>Your Bookings</h4>
+            <div id="cart-items-list">
+              <p>No rooms booked yet.</p>
+            </div>
+            <button class="btn clear-cart-btn" id="clear-cart-btn" style="display:none;">Clear All</button>
+          </div>
+        </li>
+        <li id="user-profile-icon-nav" style="display: none;">
+          <a href="#" id="profile-icon-btn"><i class="ri-user-line"></i></a>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <p><strong>Name:</strong> <span id="dropdown-profile-name"></span></p>
+            <p><strong>Email:</strong> <span id="dropdown-profile-email"></span></p>
+          </div>
+        </li>
+        <li id="logout-nav" style="display: none;"><a href="#" id="logout-btn">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="section__container header__container" id="home">
+      <p>Simple - Unique - Friendly</p>
+      <h1>Make Yourself At Home<br />In Our <span>Hotel</span>.</h1>
+    </div>
+  </header>
+
+  <!-- Booking Form -->
+  <form action="#" class="booking__form" id="booking-form">
+    <div class="input__group">
+      <span><i class="ri-calendar-2-fill"></i></span>
+      <div>
+        <label for="check-in">CHECK-IN</label>
+        <input type="date" id="check-in" placeholder="Check In" />
+      </div>
+    </div>
+    <div class="input__group">
+      <span><i class="ri-calendar-2-fill"></i></span>
+      <div>
+        <label for="check-out">CHECK-OUT</label>
+        <input type="date" id="check-out" placeholder="Check Out" />
+      </div>
+    </div>
+    <div class="input__group">
+      <span><i class="ri-user-fill"></i></span>
+      <div>
+        <label for="guest">GUEST</label>
+        <input type="number" id="guest-count" placeholder="Guest" value="1" min="1" />
+      </div>
+    </div>
+    <div class="input__group input__btn">
+      <button class="btn" type="submit" id="check-availability-btn">CHECK OUT</button>
+    </div>
+  </form>
+
+  <!-- User Profile -->
+  <section class="section__container" id="profile" style="display: none;">
+    <p class="section__subheader">USER PROFILE</p>
+    <h2 class="section__header">Welcome, <span id="profile-name"></span>!</h2>
+    <div class="profile-details">
+      <p><strong>Email:</strong> <span id="profile-email"></span></p>
+      <p><strong>Status:</strong> Logged In</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="section__container contact__container" id="contact">
+    <p class="section__subheader">CONTACT US</p>
+    <h2 class="section__header">Get In Touch.</h2>
+    <form class="contact__form" id="contact-form">
+      <input type="text" id="contact-name" placeholder="Your Name" required />
+      <input type="email" id="contact-email" placeholder="Your Email" required />
+      <input type="text" id="contact-subject" placeholder="Subject" />
+      <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Rooms Section -->
+  <section class="section__container room__container">
+    <p class="section__subheader">OUR LIVING ROOM</p>
+    <h2 class="section__header">The Most Memorable Rest Time Starts Here.</h2>
+    <div class="room__grid">
+      <div class="room__card">
+        <div class="room__card__image">
+          <img src="assets/1stroom.jpg" alt="room" />
+        </div>
+        <div class="room__card__details">
+          <h4>Deluxe Ocean View</h4>
+          <p>Bask in luxury with breathtaking ocean views from your private suite.</p>
+          <h5>Starting from <span>1500 Rs/night</span></h5>
+          <button class="btn">Book Now</button>
+        </div>
+      </div>
+      <div class="room__card">
+        <div class="room__card__image">
+          <img src="assets/2ndroom.jpg" alt="room" />
+        </div>
+        <div class="room__card__details">
+          <h4>Executive Cityscape Room</h4>
+          <p>Experience urban elegance and modern comfort in the heart of the city.</p>
+          <h5>Starting from <span>2000 Rs/night</span></h5>
+          <button class="btn">Book Now</button>
+        </div>
+      </div>
+      <div class="room__card">
+        <div class="room__card__image">
+          <img src="assets/3rdroom.jpg" alt="room" />
+        </div>
+        <div class="room__card__details">
+          <h4>Family Garden Retreat</h4>
+          <p>Spacious and inviting, perfect for creating cherished memories with loved ones.</p>
+          <h5>Starting from <span>3000 Rs/night</span></h5>
+          <button class="btn">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section__container about__container" id="about">
+    <div class="about__image">
+      <img src="assets/about.jpg" alt="about" />
+    </div>
+    <div class="about__content">
+      <p class="section__subheader">ABOUT US</p>
+      <h2 class="section__header">The Best Holidays Start Here!</h2>
+      <p class="section__description">
+        With a focus on quality accommodations, personalized experiences, and
+        seamless booking, our platform is dedicated to ensuring that every
+        traveler embarks on their dream holiday with confidence and
+        excitement.
+      </p>
+      <div class="about__btn">
+        <button class="btn">Read More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="service" id="service">
+    <div class="section__container service__container">
+      <div class="service__content">
+        <p class="section__subheader">SERVICES</p>
+        <h2 class="section__header">Strive Only For The Best.</h2>
+        <ul class="service__list">
+          <li><span><i class="ri-shield-star-line"></i></span> High Class Security</li>
+          <li><span><i class="ri-24-hours-line"></i></span> 24 Hours Room Service</li>
+          <li><span><i class="ri-headphone-line"></i></span> Conference Room</li>
+          <li><span><i class="ri-map-2-line"></i></span> Tourist Guide Support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner Stats -->
+  <section class="section__container banner__container">
+    <div class="banner__content">
+      <div class="banner__card"><h4>25+</h4><p>Properties Available</p></div>
+      <div class="banner__card"><h4>350+</h4><p>Bookings Completed</p></div>
+      <div class="banner__card"><h4>600+</h4><p>Happy Customers</p></div>
+    </div>
+  </section>
+
+  <!-- Explore -->
+  <section class="explore" id="explore">
+    <p class="section__subheader">EXPLORE</p>
+    <h2 class="section__header">What's New Today.</h2>
+    <div class="explore__bg">
+      <div class="explore__content">
+        <h4>A New Menu Is Available In Our Hotel.</h4>
+        <button class="btn">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="section__container footer__container">
+      <div class="footer__col">
+        <div class="logo">
+          <a href="#home"><img src="assets/stazle.jpeg" alt="logo" /></a>
+        </div>
+        <p class="section__description">
+          Discover a world of comfort, luxury, and adventure as you explore our curated selection of hotels.
+        </p>
+        <button class="btn">Book Now</button>
+      </div>
+      <div class="footer__col">
+        <h4>QUICK LINKS</h4>
+        <ul class="footer__links">
+          <li><a href="#">Browse Destinations</a></li>
+          <li><a href="#">Special Offers & Packages</a></li>
+          <li><a href="#">Room Types & Amenities</a></li>
+          <li><a href="#">Customer Reviews</a></li>
+          <li><a href="#">Travel Tips</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>OUR SERVICES</h4>
+        <ul class="footer__links">
+          <li><a href="#">Concierge Assistance</a></li>
+          <li><a href="#">Flexible Booking Options</a></li>
+          <li><a href="#">Airport Transfers</a></li>
+          <li><a href="#">Wellness & Recreation</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>CONTACT US</h4>
+        <ul class="footer__links">
+          <li><a href="#">stazlehotels@info.com</a></li>
+        </ul>
+        <div class="footer__socials">
+          <a href="https://www.facebook.com/"><img src="assets/facebook.png" alt="facebook" /></a>
+          <a href="https://www.instagram.com/"><img src="assets/instagram.png" alt="instagram" /></a>
+          <a href="https://www.youtube.com/"><img src="assets/youtube.png" alt="youtube" /></a>
+          <a href="https://x.com/?lang=en"><img src="assets/twitter.png" alt="twitter" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar">
+      Copyright © 2025 Stazle Hotels pvt.ltd. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
