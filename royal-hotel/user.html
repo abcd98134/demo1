@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>ConnectMe Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #d6e1f7;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .forgot {
+      text-align: right;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+
+    .forgot a {
+      color: #1a5eff;
+      text-decoration: none;
+    }
+
+    .login-box {
+      background-color: white;
+      border-radius: 8px;
+      width: 400px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .login-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #1a5eff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 20px 0;
+      color: gray;
+      font-size: 12px;
+    }
+
+    .social-btns {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .social-btns button {
+      flex: 1;
+      padding: 10px;
+      margin: 0 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f0f2f5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+    }
+
+    .social-btns img {
+      height: 18px;
+      margin-right: 8px;
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .register a {
+      color: #1a5eff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    #error {
+      color: red;
+      font-style: italic;
+      font-size: 13px;
+    }
+
+    .logo {
+      width: 150px;
+      /* Adjust width to your design */
+      height: auto;
+      /* Maintain aspect ratio */
+      object-fit: contain;
+      /* Ensure the image fits nicely */
+      display: block;
+      /* Makes centering easier */
+      margin: 0 auto 20px;
+      /* Center horizontally with spacing below */
+      border-radius: 8px;
+      /* Slight rounded corners (optional) */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Soft shadow for elevation */
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+
+    .logo {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="login-box">
+
+      <img src="./assets/stazle.jpeg" class="logo" alt="This is the Hotel Logo">
+
+      <h3>Login</h3>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="youremail@example.com" />
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="password" />
+      <div class="forgot"> <a href="#" onclick="msg()">Forgot ?</a>
+      </div>
+      <div id="error"></div>
+      <button class="login-btn" onclick="loginUser()">Account Login</button>
+      <div class="divider">OR USE WITH</div>
+      <div class="social-btns">
+        <button onclick="googleLogin()">
+          <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" width="16" />Google
+        </button>
+        <button disabled>
+          <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" width="16" />Facebook
+        </button>
+      </div>
+
+      <div class="register">
+        Don't have an account? <a href="register.html">Register</a>
+      </div>
+    </div>
+  </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAuZUwv18qskHGD7ld5w0tNU6Qb-3UGz5U",
+      authDomain: "jatin-chat.firebaseapp.com",
+      projectId: "jatin-chat",
+      storageBucket: "jatin-chat.firebasestorage.app",
+      messagingSenderId: "496284394361",
+      appId: "1:496284394361:web:e1ef76600e485e801945a8",
+      measurementId: "G-C9WV1LMXJL"
+    };
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
+
+    // Email/Password Login
+    window.loginUser = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const errorDiv = document.getElementById("error");
+      errorDiv.textContent = "";
+
+      if (!email || !password) {
+        errorDiv.textContent = "Please fill both email and password.";
+        return;
+      }
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCred) => {
+          const user = userCred.user;
+
+          // Save user info in Realtime DB (optional)
+          set(ref(database, "users/" + user.uid), {
+            email: user.email,
+            uid: user.uid
+          });
+
+          // Save user info to localStorage to access in dashboard
+          localStorage.setItem("emailUser", JSON.stringify({
+            email: user.email,
+            name: user.email,  // using email as name fallback
+            photo: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          }));
+
+          window.location.href = "index.html"; // Redirect to index.html
+        })
+        .catch((err) => {
+          errorDiv.textContent = err.message;
+        });
+    };
+    //Forgot Password
+    window.msg = function () {
+      const email = document.getElementById("email").value;
+      const error = document.getElementById("error");
+      error.textContent = "";
+
+      if (!email) {
+        error.textContent = "Please enter your email.";
+        return;
+      }
+
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          alert("Password reset link sent to your email.");
+        })
+        .catch((err) => {
+          error.textContent = err.message;
+        });
+    };
+    //Google Login
+    window.googleLogin = function () {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          // Save Google user info
+          set(ref(database, "users/" + user.uid), {
+            email: user.email, name: user.displayName,
+            photo: user.photoURL, uid: user.uid
+          });
+          localStorage.setItem("googleUser", JSON.stringify({
+            name: user.displayName, email: user.email, photo: user.photoURL
+          }));
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          document.getElementById("error").textContent = error.message;
+        });
+    };
+  </script>
+</body>
+
+</html>

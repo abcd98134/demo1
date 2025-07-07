@@ -1,0 +1,798 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* Add to styles.css for the new contact form */
+.contact__container {
+  text-align: center;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contact__form input[type="text"],
+.contact__form input[type="email"],
+.contact__form textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contact__form textarea {
+  resize: vertical;
+}
+
+.contact__form button {
+  align-self: flex-end;
+  /* Align button to the right */
+  padding: 0.75rem 2rem;
+}
+
+:root {
+  --primary-color: #6662e5;
+  --primary-color-dark: #6662e5;
+  --text-dark: #0c0a09;
+  --text-light: #78716c;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.section__container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.section__subheader,
+.section__header {
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.section__subheader {
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.section__subheader::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 4rem;
+  margin: 0.5rem auto;
+  background-color: var(--primary-color);
+}
+
+.section__header {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+}
+
+.section__description {
+  color: var(--text-light);
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  max-width: 120px;
+  object-fit: contain;
+}
+
+.header {
+  background: url("assets/background.jpg") center/cover no-repeat;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  height: 80px;
+}
+
+.nav__bar {
+  width: auto;
+  display: block;
+  padding: 0;
+}
+
+.nav__links {
+  position: static;
+  width: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  background-color: transparent;
+  transform: none;
+  transition: none;
+  z-index: auto;
+  margin-left: auto;
+  list-style: none;
+}
+
+.nav__links a {
+  color: var(--white);
+  position: relative;
+  padding-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav__links a:hover::after {
+  width: 100%;
+}
+
+.header__container {
+  padding: 10rem 0 15rem;
+  text-align: center;
+}
+
+.header__container h1 {
+  font-size: 4rem;
+  font-weight: 500;
+  line-height: 4.5rem;
+  color: var(--white);
+}
+
+.header__container h1 span {
+  color: var(--primary-color);
+}
+
+.header__container p {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--white);
+  opacity: 0.6;
+}
+
+.booking__form {
+  padding: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.input__group {
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input__group span {
+  font-size: 1.75rem;
+  color: var(--primary-color);
+}
+
+.input__group label {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.input__group input {
+  width: 100%;
+  max-width: 150px;
+  padding: 5px;
+  font-size: 0.9rem;
+  outline: none;
+  border: none;
+  color: var(--text-dark);
+}
+
+.input__group input::placeholder {
+  color: var(--text-light);
+}
+
+.about__container {
+  display: grid;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.about__image img {
+  max-width: 450px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.room__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.room__card {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.room__card__icons {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.room__card__icons span {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 1.5rem;
+  background-color: var(--white);
+  border-radius: 100%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.room__card__details {
+  padding: 1rem;
+}
+
+.room__card h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.room__card p,
+.room__card h5 {
+  color: var(--text-light);
+}
+
+.service {
+  background: url("assets/service.jpg") center/cover no-repeat;
+}
+
+.service__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.service__content {
+  grid-column: 1 / -1;
+  padding: 2rem 4rem;
+  background-color: var(--white);
+}
+
+.service__list {
+  list-style: none;
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.service__list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.service__list span {
+  padding: 5px 12px;
+  font-size: 1.75rem;
+  color: var(--text-dark);
+  background-color: var(--text-light);
+  border-radius: 100%;
+}
+
+.banner__content {
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.banner__card {
+  text-align: center;
+  flex: 1 1 180px;
+}
+
+.banner__card h4 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.banner__card p {
+  color: var(--text-light);
+}
+
+.footer {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+}
+
+.footer__container {
+  display: grid;
+  gap: 4rem 2rem;
+}
+
+.footer__col h4 {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.footer__links {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.footer__links a {
+  color: var(--text-light);
+  transition: color 0.3s;
+}
+
+.footer__links a:hover {
+  color: var(--white);
+}
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.footer__socials img {
+  max-width: 25px;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.footer__socials img:hover {
+  opacity: 0.8;
+}
+
+/* New styles for profile section (remains hidden) */
+.profile-details {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 2rem auto;
+  display: none; /* Ensure it's hidden */
+}
+
+.profile-details p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.profile-details strong {
+  color: var(--primary-color-dark);
+}
+
+/* Styles for the profile dropdown menu */
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 5px); /* Position below the nav link, with a small gap */
+  right: 0; /* Align to the right edge of its parent li */
+  background-color: var(--white);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  min-width: 200px;
+  z-index: 1000; /* Ensure it's above other content */
+  display: none; /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.profile-dropdown.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ensure the parent li has position: relative for absolute positioning of dropdown */
+#user-profile-icon-nav {
+    position: relative;
+}
+
+.profile-dropdown p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.profile-dropdown p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-dropdown strong {
+  color: var(--primary-color-dark);
+}
+
+/* Styles for the cart dropdown menu */
+.cart-dropdown {
+  position: absolute;
+  top: calc(100% + 5px); /* Position below the nav link, with a small gap */
+  right: 0; /* Align to the right edge of its parent li */
+  background-color: var(--white);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  min-width: 280px; /* Slightly wider than profile for room details */
+  max-height: 300px; /* Limit height for scrollability */
+  overflow-y: auto; /* Enable scrolling if many items */
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cart-dropdown.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+#cart-icon-nav {
+    position: relative; /* Essential for absolute positioning of dropdown */
+    /* Other styles for the li */
+}
+
+.cart-count {
+    position: absolute;
+    top: 5px; /* Adjust as needed */
+    right: 5px; /* Adjust as needed */
+    background-color: #ff4d4d; /* Red badge */
+    color: white;
+    font-size: 0.7em;
+    padding: 2px 6px;
+    border-radius: 50%;
+    line-height: 1;
+    z-index: 1; /* Above the icon */
+}
+
+.cart-dropdown h4 {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed #eee;
+}
+
+.cart-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-details h5 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.cart-item-details p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.clear-cart-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #dc3545; /* Bootstrap danger color */
+}
+
+.clear-cart-btn:hover {
+    background-color: #c82333;
+}
+
+/* Adjustments for navigation links when logged in */
+.nav__links li {
+    display: block; /* Ensure new list items are displayed correctly */
+}
+
+/* Make nav__links display flex and ensure nav is full width on larger screens */
+@media (min-width: 768px) {
+  nav {
+    padding: 1rem 2rem;
+  }
+  .nav__links {
+    flex-direction: row; /* Ensure horizontal layout */
+    margin-left: auto; /* Push nav links to the right */
+    width: auto;
+  }
+}
+
+
+
+
+/* new */
+
+
+/* Enhanced Booking Form Styles */
+.booking__form {
+  background: linear-gradient(145deg, #f3f4f6, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem 3rem;
+  margin: 3rem auto;
+  max-width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.booking__form:hover {
+  transform: translateY(-5px);
+}
+
+.input__group {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.input__group:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.input__group input {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input__group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(102, 98, 229, 0.2);
+}
+
+.input__btn {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.booking__form .btn {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 14px rgba(102, 98, 229, 0.4);
+  transition: transform 0.2s;
+}
+
+.booking__form .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Quantity Badge and Controls Styles */
+.quantity-badge {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.total-price {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-top: 4px !important;
+  font-size: 0.9rem !important;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 4px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.btn-quantity {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.btn-quantity:hover {
+  background-color: var(--primary-color-dark);
+  transform: scale(1.1);
+}
+
+.btn-quantity:active {
+  transform: scale(0.95);
+}
+
+.decrease-btn {
+  background-color: #dc3545;
+}
+
+.decrease-btn:hover {
+  background-color: #c82333;
+}
+
+.quantity-display {
+  font-weight: 600;
+  color: var(--text-dark);
+  min-width: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* Enhanced cart item styling */
+.cart-item {
+  padding: 12px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background-color: #fafafa;
+  transition: all 0.2s ease;
+}
+
+.cart-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.cart-item:last-child {
+  margin-bottom: 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Update cart count badge styling */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(45deg, #ff4d4d, #ff6b6b);
+  color: white;
+  font-size: 0.7em;
+  padding: 4px 6px;
+  border-radius: 50%;
+  line-height: 1;
+  z-index: 1;
+  font-weight: 600;
+  min-width: 18px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+

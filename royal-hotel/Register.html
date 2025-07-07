@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #eef1f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .register-box {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #1a5eff;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #1a5eff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #error {
+      color: red;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    #success {
+      color: green;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="register-box">
+    <h2>Register</h2>
+    <label>Email</label>
+    <input type="email" id="email" placeholder="you@example.com" />
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter password" />
+    <button onclick="registerUser()">Register</button>
+    <div id="error"></div>
+    <div id="success"></div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAuZUwv18qskHGD7ld5w0tNU6Qb-3UGz5U",
+      authDomain: "jatin-chat.firebaseapp.com",
+      projectId: "jatin-chat",
+      storageBucket: "jatin-chat.firebasestorage.app",
+      messagingSenderId: "496284394361",
+      appId: "1:496284394361:web:e1ef76600e485e801945a8",
+      measurementId: "G-C9WV1LMXJL",
+      databaseURL: "https://console.firebase.google.com/u/0/project/jatin-chat/database/jatin-chat-default-rtdb/data/~2F"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    window.registerUser = function () {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorDiv = document.getElementById("error");
+      const successDiv = document.getElementById("success");
+      errorDiv.textContent = "";
+      successDiv.textContent = "";
+
+      if (!email || !password) {
+        errorDiv.textContent = "Email and password are required.";
+        return;
+      }
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCred) => {
+          const user = userCred.user;
+
+          set(ref(db, "users/" + user.uid), {
+            email: user.email,
+            uid: user.uid,
+            createdAt: new Date().toISOString()
+          });
+
+          successDiv.textContent = "Registration successful!";
+          setTimeout(() => {
+            window.location.href = "chetan.html"; // redirect after success
+          }, 1500);
+        })
+        .catch((err) => {
+          errorDiv.textContent = err.message;
+        });
+    };
+  </script>
+</body>
+
+</html>
