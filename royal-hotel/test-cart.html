@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Functionality Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .btn { background: #6662e5; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 10px; }
+        .btn:hover { background: #5551d4; }
+        .cart-count { background: red; color: white; border-radius: 50%; padding: 5px 10px; margin-left: 10px; }
+        .cart-dropdown { background: #f9f9f9; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .quantity-badge { background: #6662e5; color: white; padding: 2px 6px; border-radius: 12px; margin-left: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Cart Functionality Test</h1>
+    
+    <div>
+        <h3>Test Room 1 - Deluxe Suite</h3>
+        <button class="btn book-now-btn" data-room-id="test1">Book Now</button>
+    </div>
+    
+    <div>
+        <h3>Test Room 2 - Executive Room</h3>
+        <button class="btn book-now-btn" data-room-id="test2">Book Now</button>
+    </div>
+    
+    <div>
+        <h3>Cart Status:</h3>
+        <span>Cart Count: <span class="cart-count" id="cart-count">0</span></span>
+        <button class="btn" onclick="toggleCart()">Show/Hide Cart</button>
+    </div>
+    
+    <div class="cart-dropdown" id="cart-display" style="display:none;">
+        <h4>Cart Contents:</h4>
+        <div id="cart-items"></div>
+    </div>
+
+    <script>
+        // Simplified cart functionality for testing
+        let cart = [];
+        
+        function addToCart(roomId) {
+            const roomNames = {
+                'test1': 'Deluxe Suite - 1500 Rs/night',
+                'test2': 'Executive Room - 2000 Rs/night'
+            };
+            
+            const existingItem = cart.find(item => item.id === roomId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    id: roomId,
+                    name: roomNames[roomId],
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            alert(`Room added! Total quantity: ${getTotalQuantity()}`);
+        }
+        
+        function getTotalQuantity() {
+            return cart.reduce((total, item) => total + item.quantity, 0);
+        }
+        
+        function updateCartDisplay() {
+            document.getElementById('cart-count').textContent = getTotalQuantity();
+            
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>No items in cart</p>';
+            } else {
+                cart.forEach(item => {
+                    cartItems.innerHTML += `
+                        <div style="margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            ${item.name} <span class="quantity-badge">x${item.quantity}</span>
+                        </div>
+                    `;
+                });
+            }
+        }
+        
+        function toggleCart() {
+            const cartDisplay = document.getElementById('cart-display');
+            cartDisplay.style.display = cartDisplay.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Add event listeners
+        document.querySelectorAll('.book-now-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                addToCart(e.target.dataset.roomId);
+            });
+        });
+        
+        // Initialize
+        updateCartDisplay();
+    </script>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #e8f5e8; border-radius: 5px;">
+        <h3>✅ Test Instructions:</h3>
+        <ol>
+            <li>Click "Book Now" buttons multiple times</li>
+            <li>Watch the cart count increase with each click</li>
+            <li>Click "Show/Hide Cart" to see quantities</li>
+            <li>Notice the quantity badges (x2, x3, etc.)</li>
+        </ol>
+        <p><strong>Expected Behavior:</strong> Each click should increment the cart count and show quantity badges in the cart display.</p>
+    </div>
+</body>
+</html>
